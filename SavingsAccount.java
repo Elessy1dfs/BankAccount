@@ -1,5 +1,5 @@
 
-public  class SavingsAccount {
+public  class CheckingAccount {
 
-    System.out.print("Savings ni ya");
+    System.out.print("Checking ni ya");
 }
