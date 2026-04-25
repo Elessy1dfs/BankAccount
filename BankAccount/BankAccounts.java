@@ -5,9 +5,14 @@ public abstract class BankAccounts implements Transactional {
 
     public BankAccount(String name, double balance, String pin) {
         this.name = name;
-        this.balance = balance;
         this.pin = pin;
+        this.balance = balance;
     }
+
+    public String getName(){
+        return name;
+    }
+    
 
  
 }
