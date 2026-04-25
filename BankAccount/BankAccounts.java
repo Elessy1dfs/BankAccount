@@ -11,8 +11,12 @@ public abstract class BankAccounts implements Transactional {
 
     public String getName(){
         return name;
+        
     }
     public double boolean validatePin(String inputPin){
         return this.pin.equals(inputPin);
+    }
+    public abstract void displayAccountType();
+    }
      
-}
+
