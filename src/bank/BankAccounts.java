@@ -1,4 +1,4 @@
-public abstract class BankAccounts implements Transactional {
+public abstract class BankAccount implements Transactional {
     private String name;
     private String pin;
     protected double balance;
