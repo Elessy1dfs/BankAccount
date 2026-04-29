@@ -37,5 +37,9 @@ Responsible for storing and retrieving transaction records.
 - **Transactional.java**  
 An interface that defines the basic bankin operations.
 
+## Diagrams
+
+**Class Diagram**   
+![Class Diagram](Class%20Diagram.drawio.png)
 
 
