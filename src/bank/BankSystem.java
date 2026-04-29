@@ -25,5 +25,15 @@ public class BankSystem {
         return null;
     }
 
+    //function para mo display sa mga registered na account
+    public void showAccounts(){
+        System.out.println("\n -- REGISTERED ACCOUNTS -- ");
+
+        for(int i = 0; i < this.accounts.size();i++){
+            BankAccount currentAccount = this.account.get(i);
+            System.out.print("Account Holder: " + currentAccount.getName());
+        }
+    }
+
 
 }
