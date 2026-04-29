@@ -1,6 +1,6 @@
 # Bank Account System
 
-A Java-based application for managing Savings and Checking accounts with secure transaction handling and history tracking.
+A Java-based application for managing Savings and Checking accounts with secure transaction handling and history tracking. It works like a basic ATM where you can create an account, save money, and take it out when you need it. We built it to show how a real bank handles different types of accounts while keeping your money safe.
 
 
 ## Features
