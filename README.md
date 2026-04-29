@@ -48,26 +48,26 @@ An interface that defines the basic bankin operations.
 ## Installation & Setup
 
 **Clone the repository:**
-```bash
+
 git clone https://github.com/Elessy1dfs/BankAccount.git
-```
+
 
 **Navigate to the project folder:**
-```bash
+
 cd BankAccount/src/bank
-```
+
 
 ## Usage
 
 **Compile the program:**
-```bash
+
 javac *.java
-```
+
 
 **Run the program:**
-```bash
+
 java Main
-```
+
 
 **Run the system:**  
 Follow the instructions shown in the console to create an account and perform transactions.
