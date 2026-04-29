@@ -30,7 +30,7 @@ public class BankSystem {
         System.out.println("\n -- REGISTERED ACCOUNTS -- ");
 
         for(int i = 0; i < this.accounts.size();i++){
-            BankAccount currentAccount = this.account.get(i);
+            BankAccount currentAccount = this.accounts.get(i);
             System.out.print("Account Holder: " + currentAccount.getName());
         }
     }
