@@ -25,7 +25,7 @@ public class BankSystem {
         return null;
     }
 
-    //function para mo display sa mga registered na account
+    //function para mo display sa mga registered na accoun
     public void showAccounts(){
         System.out.println("\n -- REGISTERED ACCOUNTS -- ");
 
