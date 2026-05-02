@@ -43,3 +43,6 @@ The system separates the **Player** interactions (Movement/Attack) from the **Sy
 1. Clone the repository:
    ```bash
    git clone [https://github.com/yourusername/MemeMon-Brainrot-Arena.git](https://github.com/yourusername/MemeMon-Brainrot-Arena.git)
+2. Ensure your sprite sheets (sigma_sheet.png, skibidi_sheet.png) and arena.png are in the root directory.
+
+3. Compile and run MemeMonGame.java.
