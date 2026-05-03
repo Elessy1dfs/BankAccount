@@ -1,58 +1,51 @@
 import javax.swing.Timer;
-
+ 
 public class BattleManager {
-    public Pet player, bot;
-    public boolean playerTurn = true;
-    private Runnable updateUI;
-
+    public Pet player;
+    public Pet bot;
+    private final Runnable updateUI;
+ 
     public BattleManager(Pet player, Pet bot, Runnable updateUI) {
         this.player = player;
         this.bot = bot;
         this.updateUI = updateUI;
     }
+ 
+    public void shootPlasma() {
+        if (player.projectileActive) return; // Only one ball at a time
+ 
+        player.projectileActive = true;
+        player.projX = player.x + 50;
+        player.projY = player.y + 50;
+ 
+        Timer projTimer = new Timer(20, null);
+        projTimer.addActionListener(e -> {
+            player.projX += 10; // Moves right
+ 
+            // Collision Detection
+            if (Math.abs(player.projX - bot.x) < 50 && Math.abs(player.projY - bot.y) < 50) {
+                bot.takeDamage(player.aura);
+                player.projectileActive = false;
+                projTimer.stop();
+            }
+ 
+            // Out of bounds
+            if (player.projX > 2000) {
+                player.projectileActive = false;
+                projTimer.stop();
+            }
+            updateUI.run();
+        });
+        projTimer.start();
+    }
+ 
+    public void updateAI() {
+        // Bot chases player
+        bot.chase(player);
+ 
+        // Bot attacks if close (Melee range)
+        if (bot.getDistanceTo(player) < 60) {
+            player.takeDamage(1); 
+        }
+    }
 }
-public void playerAttack() {
-        if (!playerTurn || player.hp <= 0 || bot.hp <= 0) return;
-
-        playerTurn = false;
-        player.state = 1; // Attacking state
-        player.x += 50; // Dash toward bot
-
-        bot.takeDamage(player.aura);
-        bot.state = 2; // Hurt state
-
-        updateUI.run();
-
-        // Reset player position after 500ms
-        Timer resetPos = new Timer(500, e -> {
-            player.x = player.baseX;
-            updateUI.run();
-        });
-        resetPos.setRepeats(false);
-        resetPos.start();
-
-        // Trigger bot turn after 1.2 seconds
-        Timer timer = new Timer(1200, e -> executeBotTurn());
-        timer.setRepeats(false);
-        timer.start();
-    }
-private void executeBotTurn() {
-        if (bot.hp <= 0) return;
-
-        bot.state = 1; // Bot attacking
-        player.takeDamage(bot.aura);
-        player.state = 2; // Player hurt
-
-        updateUI.run();
-
-        // Return both to Idle (state 0) after 600ms
-        Timer reset = new Timer(600, e -> {
-            player.state = 0;
-            bot.state = 0;
-            playerTurn = true;
-            updateUI.run();
-        });
-        reset.setRepeats(false);
-        reset.start();
-    }
-
