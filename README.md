@@ -46,7 +46,7 @@ The project is designed with a strict adherence to OOP concepts:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/yourusername/MemeMon-Brainrot-Arena.git](https://github.com/yourusername/MemeMon-Brainrot-Arena.git)
+   git clone [https://github.com/Elessy1dfs/Meme-Mon-Brainrot-arena.git](https://github.com/Elessy1dfs/Meme-Mon-Brainrot-arena.git)
 2. Ensure your sprite sheets (sigma_sheet.png, skibidi_sheet.png) and arena.png are in the root directory.
 
 3. Compile and run MemeMonGame.java.
