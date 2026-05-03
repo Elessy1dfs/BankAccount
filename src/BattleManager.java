@@ -36,4 +36,23 @@ public void playerAttack() {
         timer.setRepeats(false);
         timer.start();
     }
+private void executeBotTurn() {
+        if (bot.hp <= 0) return;
+
+        bot.state = 1; // Bot attacking
+        player.takeDamage(bot.aura);
+        player.state = 2; // Player hurt
+
+        updateUI.run();
+
+        // Return both to Idle (state 0) after 600ms
+        Timer reset = new Timer(600, e -> {
+            player.state = 0;
+            bot.state = 0;
+            playerTurn = true;
+            updateUI.run();
+        });
+        reset.setRepeats(false);
+        reset.start();
+    }
 
