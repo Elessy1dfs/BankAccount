@@ -34,15 +34,29 @@ public class BattlePanel extends JPanel {
     }
  
     private void setupMovement(InputMap im, ActionMap am) {
-        im.put(KeyStroke.getKeyStroke("LEFT"), "left");
-        am.put("left", new AbstractAction() { @Override public void actionPerformed(ActionEvent e) { manager.player.move(-15, 0); } });
-        im.put(KeyStroke.getKeyStroke("RIGHT"), "right");
-        am.put("right", new AbstractAction() { @Override public void actionPerformed(ActionEvent e) { manager.player.move(15, 0); } });
-        im.put(KeyStroke.getKeyStroke("UP"), "up");
-        am.put("up", new AbstractAction() { @Override public void actionPerformed(ActionEvent e) { manager.player.move(0, -15); } });
-        im.put(KeyStroke.getKeyStroke("DOWN"), "down");
-        am.put("down", new AbstractAction() { @Override public void actionPerformed(ActionEvent e) { manager.player.move(0, 15); } });
-    }
+    // We use "pressed" and "released" logic or simple triggers
+    String[] keys = {"LEFT", "RIGHT", "UP", "DOWN"};
+    
+    im.put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
+    am.put("moveLeft", new AbstractAction() { 
+        @Override public void actionPerformed(ActionEvent e) { manager.player.move(-15, 0); repaint(); } 
+    });
+
+    im.put(KeyStroke.getKeyStroke("RIGHT"), "moveRight");
+    am.put("moveRight", new AbstractAction() { 
+        @Override public void actionPerformed(ActionEvent e) { manager.player.move(15, 0); repaint(); } 
+    });
+
+    im.put(KeyStroke.getKeyStroke("UP"), "moveUp");
+    am.put("moveUp", new AbstractAction() { 
+        @Override public void actionPerformed(ActionEvent e) { manager.player.move(0, -15); repaint(); } 
+    });
+
+    im.put(KeyStroke.getKeyStroke("DOWN"), "moveDown");
+    am.put("moveDown", new AbstractAction() { 
+        @Override public void actionPerformed(ActionEvent e) { manager.player.move(0, 15); repaint(); } 
+    });
+}
  
    @Override
 protected void paintComponent(Graphics g) {
