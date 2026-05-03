@@ -29,7 +29,7 @@ The project is designed with a strict adherence to OOP concepts:
 * **`BattlePanel.java` (Graphics/Events):** Handles rendering, the `KeyListener` for movement, and the Arena background.
 
 ### Use Case Diagram
-The system separates the **Player** interactions (Movement/Attack) from the **System Bot** logic (Receiving Damage/State Handling).
+![System Use Case Diagram](images/UseCaseDiagramBrainrot.drawio.png)
 
 ---
 
