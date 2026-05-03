@@ -34,14 +34,14 @@ The project is designed with a strict adherence to OOP concepts:
 
 
 ### Use Case Diagram
-![System Use Case Diagram](images/UseCaseDiagramBrainrot.drawio.png)
+![System Use Case Diagram](UseCaseDiagramBrainrot.drawio.png)
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-* **Java JDK 17** or higher.
+* **Java JDK 17** or higher.s
 * IDE (IntelliJ IDEA, Eclipse, or NetBeans).
 
 ### Installation
