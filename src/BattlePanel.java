@@ -44,17 +44,43 @@ public class BattlePanel extends JPanel {
         am.put("down", new AbstractAction() { @Override public void actionPerformed(ActionEvent e) { manager.player.move(0, 15); } });
     }
  
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Draw characters
-        g.drawImage(manager.player.getCurrentFrame(), manager.player.x, manager.player.y, 100, 100, null);
-        g.drawImage(manager.bot.getCurrentFrame(), manager.bot.x, manager.bot.y, 100, 100, null);
+   @Override
+protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D) g;
  
-        // Draw Plasma Ball if active
-        if (manager.player.projectileActive) {
-            g.drawImage(plasmaImg, manager.player.projX, manager.player.projY, 40, 40, null);
-        }
-        // Draw Health bars...
+    // 1. Draw Background First
+    if (arenaBackground != null) {
+        g2.drawImage(arenaBackground, 0, 0, getWidth(), getHeight(), null);
+    } else {
+        g2.setColor(Color.DARK_GRAY); // Fallback if image is missing
+        g2.fillRect(0, 0, getWidth(), getHeight());
     }
+ 
+    // 2. Draw Plasma Ball
+    if (manager.player.projectileActive) {
+        g2.drawImage(plasmaImg, manager.player.projX, manager.player.projY, 40, 40, null);
+    }
+ 
+    // 3. Draw Pets
+    g2.drawImage(manager.player.getCurrentFrame(), manager.player.x, manager.player.y, 128, 128, null);
+    g2.drawImage(manager.bot.getCurrentFrame(), manager.bot.x, manager.bot.y, 128, 128, null);
+ 
+    // 4. Draw UI (Health Bars) - Call these methods!
+    drawUI(g2, manager.player);
+    drawUI(g2, manager.bot);
+}
+ 
+// Add this helper method if it's missing or corrected
+private void drawUI(Graphics2D g, Pet p) {
+    g.setColor(Color.WHITE);
+    g.drawString(p.name + " (Aura: " + p.hp + ")", p.x, p.y - 20);
+    // Background of health bar (Red)
+    g.setColor(Color.RED);
+    g.fillRect(p.x, p.y - 15, 100, 8);
+    // Foreground of health bar (Green)
+    g.setColor(Color.GREEN);
+    int hpWidth = (int)((float)p.hp / p.maxHp * 100);
+    g.fillRect(p.x, p.y - 15, Math.max(0, hpWidth), 8);
+} 
 }
