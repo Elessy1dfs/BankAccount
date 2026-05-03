@@ -11,6 +11,7 @@ public class MainMenu extends JPanel {
 
     public MainMenu(Runnable onStart) {
         try {
+            // This will look for "menu_bg.png" in your project root
             background = ImageIO.read(new File("menu_bg.png"));
         } catch (Exception e) {
             System.out.println("Menu background not found");
@@ -21,8 +22,10 @@ public class MainMenu extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
 
+        // Font to match the pixel aesthetic
         Font pixelFont = new Font("Arial Black", Font.BOLD, 22);
 
+        // Start Button
         startButton = new JButton("START GAME");
         startButton.setFont(pixelFont);
         startButton.setPreferredSize(new Dimension(220, 60));
@@ -32,6 +35,7 @@ public class MainMenu extends JPanel {
         startButton.setFocusPainted(false);
         startButton.addActionListener(e -> onStart.run());
 
+        // Exit Button
         exitButton = new JButton("EXIT GAME");
         exitButton.setFont(pixelFont);
         exitButton.setPreferredSize(new Dimension(220, 60));
@@ -50,5 +54,11 @@ public class MainMenu extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (background != null) {
+            g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+        } else {
+            g.setColor(new Color(20, 20, 20));
+            g.fillRect(0, 0, getWidth(), getHeight());
+        }
     }
 }
