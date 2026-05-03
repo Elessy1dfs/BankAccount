@@ -32,8 +32,19 @@ public class MainMenu extends JPanel {
         startButton.setFocusPainted(false);
         startButton.addActionListener(e -> onStart.run());
 
+        exitButton = new JButton("EXIT GAME");
+        exitButton.setFont(pixelFont);
+        exitButton.setPreferredSize(new Dimension(220, 60));
+        exitButton.setBackground(new Color(255, 0, 0, 180));
+        exitButton.setForeground(Color.WHITE);
+        exitButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        exitButton.setFocusPainted(false);
+        exitButton.addActionListener(e -> System.exit(0));
+
         gbc.gridy = 0;
         this.add(startButton, gbc);
+        gbc.gridy = 1;
+        this.add(exitButton, gbc);
     }
 
     @Override
