@@ -11,26 +11,27 @@ public class BattleManager {
         this.updateUI = updateUI;
     }
  
-    public void shootPlasma() {
-        if (player.projectileActive) return; // Only one ball at a time
+    public void shootPlasma(boolean isFacingRight) {
+        if (player.projectileActive) return;
  
         player.projectileActive = true;
-        player.projX = player.x + 50;
+        player.projDir = isFacingRight ? 1 : -1;
+        player.projX = isFacingRight ? (player.x + 80) : (player.x - 20);
         player.projY = player.y + 50;
  
         Timer projTimer = new Timer(20, null);
         projTimer.addActionListener(e -> {
-            player.projX += 10; // Moves right
+            player.projX += (15 * player.projDir);
  
-            // Collision Detection
-            if (Math.abs(player.projX - bot.x) < 50 && Math.abs(player.projY - bot.y) < 50) {
+            // Hit Detection
+            if (Math.abs(player.projX - bot.x) < 60 && Math.abs(player.projY - bot.y) < 60) {
                 bot.takeDamage(player.aura);
                 player.projectileActive = false;
                 projTimer.stop();
             }
  
-            // Out of bounds
-            if (player.projX > 2000) {
+            // Cleanup
+            if (player.projX > 2000 || player.projX < -100) {
                 player.projectileActive = false;
                 projTimer.stop();
             }
@@ -40,12 +41,11 @@ public class BattleManager {
     }
  
     public void updateAI() {
-        // Bot chases player
-        bot.chase(player);
- 
-        // Bot attacks if close (Melee range)
-        if (bot.getDistanceTo(player) < 60) {
-            player.takeDamage(1); 
+        if (bot.hp > 0) {
+            bot.chase(player);
+            if (bot.getDistanceTo(player) < 60) {
+                player.takeDamage(1); 
+            }
         }
     }
 }
