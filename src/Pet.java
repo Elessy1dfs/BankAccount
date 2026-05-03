@@ -29,4 +29,9 @@ public abstract class Pet {
             System.out.println("CRITICAL: Image not found at " + spritePath);
         }
     }
+
+    public void takeDamage(int damage) {
+        int actualDamage = Math.max(1, damage - (rizz / 5));
+        this.hp = Math.max(0, this.hp - actualDamage);
+    }
 }
