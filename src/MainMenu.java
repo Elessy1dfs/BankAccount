@@ -20,6 +20,20 @@ public class MainMenu extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
+
+        Font pixelFont = new Font("Arial Black", Font.BOLD, 22);
+
+        startButton = new JButton("START GAME");
+        startButton.setFont(pixelFont);
+        startButton.setPreferredSize(new Dimension(220, 60));
+        startButton.setBackground(new Color(0, 255, 0, 180));
+        startButton.setForeground(Color.WHITE);
+        startButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        startButton.setFocusPainted(false);
+        startButton.addActionListener(e -> onStart.run());
+
+        gbc.gridy = 0;
+        this.add(startButton, gbc);
     }
 
     @Override
