@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -7,8 +8,9 @@ public abstract class Pet {
     public int hp, maxHp, aura, rizz;
     public BufferedImage spriteSheet;
     public int frameIndex = 0;
-    public int state = 0;
+    public int state = 0; // 0: Idle, 1: Attack, 2: Hit
 
+    // Position variables for movement
     public int x, y;
     public int baseX, baseY;
 
@@ -36,14 +38,14 @@ public abstract class Pet {
     }
 
     public BufferedImage getCurrentFrame() {
-        if (spriteSheet == null) return null;
+        if (spriteSheet == null) return getPlaceholder();
 
         int colWidth = spriteSheet.getWidth() / 4;
         int rowHeight = spriteSheet.getHeight() / 3;
         int currentState = Math.min(Math.max(state, 0), 2);
 
         int startY = currentState * rowHeight;
-        int yOffset = 40;
+        int yOffset = 40; // Skips text labels in your sprites
 
         int finalY = startY + yOffset;
         int finalHeight = rowHeight - yOffset;
@@ -58,5 +60,14 @@ public abstract class Pet {
                 colWidth,
                 Math.max(1, finalHeight)
         );
+    }
+
+    private BufferedImage getPlaceholder() {
+        BufferedImage img = new BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = img.createGraphics();
+        g.setColor(Color.MAGENTA);
+        g.fillRect(0, 0, 64, 64);
+        g.dispose();
+        return img;
     }
 }
