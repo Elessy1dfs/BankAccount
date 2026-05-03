@@ -15,6 +15,11 @@ public class MainMenu extends JPanel {
         } catch (Exception e) {
             System.out.println("Menu background not found");
         }
+
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.gridx = 0;
     }
 
     @Override
