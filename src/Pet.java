@@ -1,19 +1,20 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
 import java.io.File;
+import javax.imageio.ImageIO;
 
 public abstract class Pet {
     public String name;
     public int hp, maxHp, aura, rizz;
     public int x, y;
     public int frameIndex = 0;
-    public int state = 0; 
+    public int state = 0;
     public BufferedImage spriteSheet;
 
+    // Projectile Variables
     public boolean projectileActive = false;
     public int projX, projY;
-    public int projDir = 1; 
+    public int projDir = 1;
 
     public Pet(String name, int hp, int aura, int rizz, String spritePath, int x, int y) {
         this.name = name;
@@ -48,6 +49,7 @@ public abstract class Pet {
     }
 
     public void takeDamage(int damage) {
+        // Higher Rizz acts as defense
         int actualDamage = Math.max(1, damage - (rizz / 5));
         this.hp = Math.max(0, this.hp - actualDamage);
     }
@@ -57,7 +59,7 @@ public abstract class Pet {
         int colWidth = spriteSheet.getWidth() / 4;
         int rowHeight = spriteSheet.getHeight() / 3;
         int currentState = Math.min(Math.max(state, 0), 2);
-        int yOffset = 40; 
+        int yOffset = 40;
         int startY = (currentState * rowHeight) + yOffset;
         int finalHeight = rowHeight - yOffset;
         return spriteSheet.getSubimage(frameIndex * colWidth, startY, colWidth, Math.max(1, finalHeight));
