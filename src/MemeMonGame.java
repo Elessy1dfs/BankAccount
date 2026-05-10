@@ -14,7 +14,6 @@ public class MemeMonGame extends JFrame {
 
         Pet player = new Pet("Sigma", 150, 30, 20, "sigma_sheet.png", 100, 400) {};
 
-        // Manager now automatically spawns the first boss
         BattleManager manager = new BattleManager(player, mainContainer::repaint);
 
         JPanel battleScreen = new JPanel(new BorderLayout());
