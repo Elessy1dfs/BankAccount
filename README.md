@@ -28,3 +28,13 @@
 | **Escape** | Exit Game (via Main Menu) |
 
 ---
+## 🏗️ System Architecture
+
+The project adheres to strict OOP concepts to manage complex game states:
+
+* **Pet.java (Abstraction)**: An abstract base class defining core combatant properties, including health, mana, and row-based animation logic.
+* **BattleManager.java (Encapsulation/State)**: The "Director" class. It handles stage transitions, boss spawning, potion drops, and the physics of all projectiles.
+* **BattlePanel.java (View/Controller)**: Manages 8-way input tracking, renders the current academic stage background, and handles the centered UI/HUD.
+* **MainMenu.java**: A transparent, neon-styled entry point for starting the exam gauntlet.
+
+---
