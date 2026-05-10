@@ -38,7 +38,7 @@ The project adheres to strict OOP concepts to manage complex game states:
 * **MainMenu.java**: A transparent, neon-styled entry point for starting the exam gauntlet.
 
 ---
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 * **Java JDK 17** or higher.
