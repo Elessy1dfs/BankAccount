@@ -1,16 +1,15 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import java.io.File;
 
 public class BattlePanel extends JPanel {
     private final BattleManager manager;
     private final Image plasmaImg;
-    private Image arenaBackground;
-    private Image victoryImg;
-    private Image defeatedImg;
+    private Image[] stageBackgrounds = new Image[5];
+    private Image victoryImg, defeatedImg;
     private boolean facingRight = true;
 
     public BattlePanel(BattleManager manager) {
@@ -19,11 +18,11 @@ public class BattlePanel extends JPanel {
         this.victoryImg = new ImageIcon("victory.png").getImage();
         this.defeatedImg = new ImageIcon("defeated.png").getImage();
 
-        try {
-            this.arenaBackground = ImageIO.read(new File("arena.png"));
-        } catch (Exception e) {
-            System.out.println("arena.png missing.");
-        }
+        // Load stage backgrounds
+        stageBackgrounds[1] = new ImageIcon("prelim_bg.png").getImage();
+        stageBackgrounds[2] = new ImageIcon("midterm_bg.png").getImage();
+        stageBackgrounds[3] = new ImageIcon("prefinal_bg.png").getImage();
+        stageBackgrounds[4] = new ImageIcon("final_bg.png").getImage();
 
         InputMap im = getInputMap(WHEN_IN_FOCUSED_WINDOW);
         ActionMap am = getActionMap();
@@ -69,18 +68,25 @@ public class BattlePanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if (arenaBackground != null) g2.drawImage(arenaBackground, 0, 0, getWidth(), getHeight(), null);
+        // Draw Background based on stage
+        Image bg = stageBackgrounds[manager.currentStage];
+        if (bg != null) g2.drawImage(bg, 0, 0, getWidth(), getHeight(), null);
+
+        // Stage Indicator
+        g2.setColor(Color.YELLOW);
+        g2.setFont(new Font("Arial Black", Font.BOLD, 22));
+        g2.drawString("STAGE: " + getStageTitle(manager.currentStage), 20, 40);
 
         if (manager.player.projectileActive) g2.drawImage(plasmaImg, manager.player.projX, manager.player.projY, 40, 40, null);
 
-        // Render Player
+        // Player
         if (manager.player.hp > 0) {
             BufferedImage pFrame = manager.player.getCurrentFrame();
             if (facingRight) g2.drawImage(pFrame, manager.player.x, manager.player.y, 128, 128, null);
             else g2.drawImage(pFrame, manager.player.x + 128, manager.player.y, -128, 128, null);
         }
 
-        // Render Bot
+        // Bot
         if (manager.bot.hp > 0) {
             g2.drawImage(manager.bot.getCurrentFrame(), manager.bot.x, manager.bot.y, 128, 128, null);
         }
@@ -88,11 +94,19 @@ public class BattlePanel extends JPanel {
         drawUI(g2, manager.player);
         drawUI(g2, manager.bot);
 
-        // NEW: Result Overlay
         if (manager.isGameOver) {
             Image result = manager.playerWon ? victoryImg : defeatedImg;
-            int iw = 500, ih = 250; // Adjust based on your image dimensions
-            g2.drawImage(result, (getWidth()-iw)/2, (getHeight()-ih)/2, iw, ih, null);
+            g2.drawImage(result, (getWidth()-500)/2, (getHeight()-250)/2, 500, 250, null);
+        }
+    }
+
+    private String getStageTitle(int stage) {
+        switch(stage) {
+            case 1: return "PRELIM (Contreras)";
+            case 2: return "MIDTERM (Bolabola)";
+            case 3: return "PRE-FINAL (Abadinas)";
+            case 4: return "FINALS (Taboada)";
+            default: return "";
         }
     }
 
