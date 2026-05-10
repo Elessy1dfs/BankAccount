@@ -17,3 +17,14 @@
 * **Resource System**: Manage a **Mana Bar** to fire projectiles; scavenging for **HP/Mana Potions** that spawn randomly near the player every 4 seconds.
 * **Row-Based Animations**: Dynamic sprite switching between **Idle** (Row 1), **Attack** (Row 2), and **Hit** (Row 3) states based on game logic.
 * **Responsive UI**: Stretched background rendering and centered HUD elements that adapt to full-screen/maximized windows.
+* ---
+
+## 🛠️ Controls
+
+| Key | Action |
+| :--- | :--- |
+| **Arrow Keys** | 8-Way Joystick Movement (Up, Down, Left, Right, Diagonals) |
+| **Spacebar** | Fire Plasma Ball (Costs 20 Mana) |
+| **Escape** | Exit Game (via Main Menu) |
+
+---
