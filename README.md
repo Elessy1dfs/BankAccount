@@ -57,3 +57,5 @@ The project adheres to strict OOP concepts to manage complex game states:
 3.  **Run the Game**: Open the project in your IDE, compile, and execute `MemeMonGame.java`.
 
 ---
+## 🎓 Academic Context
+Developed as a project for **Object-Oriented Programming 2 (OOP2)** at **Cebu Institute of Technology – University**.
