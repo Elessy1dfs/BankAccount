@@ -28,6 +28,16 @@ public class BattlePanel extends JPanel {
         }
         @Override public void keyReleased(KeyEvent e) { pressedKeys.remove(e.getKeyCode()); }
     });
+        new Timer(30, e -> {
+        if (!manager.isGameOver) handleJoystickMovement();
+        manager.updateAI();
+        manager.player.frameIndex = (manager.player.frameIndex + 1) % 4;
+        manager.bot.frameIndex = (manager.bot.frameIndex + 1) % 4;
+        // State resets for 'Hit' animation
+        if (manager.player.state == 2 && Math.random() > 0.9) manager.player.state = 0;
+        if (manager.bot.state == 2 && Math.random() > 0.9) manager.bot.state = 0;
+        repaint();
+    }).start();
     }
     private void handleJoystickMovement() {
         int dx = 0, dy = 0, speed = 15;
