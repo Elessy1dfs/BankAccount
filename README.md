@@ -28,7 +28,7 @@
 | **Escape** | Exit Game (via Main Menu) |
 
 ---
-## 🏗️ System Architecture
+##  System Architecture
 
 The project adheres to strict OOP concepts to manage complex game states:
 
