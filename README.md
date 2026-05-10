@@ -38,3 +38,22 @@ The project adheres to strict OOP concepts to manage complex game states:
 * **MainMenu.java**: A transparent, neon-styled entry point for starting the exam gauntlet.
 
 ---
+## 🚀 Getting Started
+
+### Prerequisites
+* **Java JDK 17** or higher.
+* An **IDE** (IntelliJ IDEA, Eclipse, or NetBeans).
+
+### Installation
+1.  **Clone the repository**:
+    ```bash
+    git clone [https://github.com/Elessy1dfs/Meme-Mon-Brainrot-arena.git](https://github.com/Elessy1dfs/Meme-Mon-Brainrot-arena.git)
+    ```
+2.  **Verify Assets**: Ensure the following `.png` files are in the **root directory** (not inside `/src`):
+    * **Bosses**: `contreras.png`, `bolabola.png`, `abadinas.png`, `taboada.png`.
+    * **Backgrounds**: `prelim_bg.png`, `midterm_bg.png`, `prefinal_bg.png`, `final_bg.png`, `menu_bg.png`.
+    * **Sprites/FX**: `sigma_sheet.png`, `plasma_ball.png`, `hp_potion.png`, `mana_potion.png`.
+    * **Results**: `victory.png`, `defeated.png`.
+3.  **Run the Game**: Open the project in your IDE, compile, and execute `MemeMonGame.java`.
+
+---
