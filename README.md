@@ -1,4 +1,4 @@
-# Meme-mon: Brainrot Arena 🚀
+# Meme-mon: Brainrot Arena 
 
 **Meme-mon: Brainrot Arena** is a high-energy, Java-based 2D battle game featuring a 2026 "Brainrot" aesthetic. Battle through custom Aseprite animations and interactive keyboard movement! Built with core **Object-Oriented Programming (OOP)** principles, it features dynamic centering, a neon-glitch arena, and distance-based melee combat. Optimize your Aura and win the Arena!
 
