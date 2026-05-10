@@ -44,6 +44,32 @@ public class BattleManager {
         }
     }
 
+    public void shootPlasma(boolean isFacingRight) {
+        if (isGameOver || player.projectileActive || player.mana < 20) return;
+        player.mana -= 20;
+        player.state = 1; // Attack State
+        player.projectileActive = true;
+        player.projDir = isFacingRight ? 1 : -1;
+        player.projX = isFacingRight ? (player.x + 80) : (player.x - 20);
+        player.projY = player.y + 50;
+
+        Timer t = new Timer(20, null);
+        t.addActionListener(e -> {
+            player.projX += (22 * player.projDir);
+            // Hit Detection
+            if (Math.abs(player.projX - bot.x) < 70 && Math.abs(player.projY - bot.y) < 70 && !bot.isInvisible) {
+                bot.takeDamage(player.aura);
+                player.projectileActive = false;
+                if (bot.hp <= 0) checkStageProgress();
+                t.stop();
+            }
+
+            if (player.projX > 2500 || player.projX < -300) { player.projectileActive = false; t.stop(); }
+        });
+        t.start();
+        new Timer(450, e -> { if(player.state != 2) player.state = 0; }).start();
+    }
+    
     private void handlePotionPickup() {
         for (int i = potions.size() - 1; i >= 0; i--) {
             Potion p = potions.get(i);
