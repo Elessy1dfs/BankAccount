@@ -27,7 +27,22 @@ public abstract class Pet {
     } catch (Exception e) {
         System.out.println("Resource error: " + spritePath);
     }
+     
     }
-        
+ 
+      public void move(int dx, int dy) {
+        this.x += dx;
+        this.y += dy;
+        if (dx > 0) faceDir = 1;
+        else if (dx < 0) faceDir = -1;
+    }
+ 
+      public void chase(Pet target) {
+        int speed = 3;
+        if (this.x < target.x) { this.x += speed; faceDir = 1; }
+        else if (this.x > target.x) { this.x -= speed; faceDir = -1; }
+        if (this.y < target.y) this.y += speed;
+        else if (this.y > target.y) this.y -= speed;
+    }
     
 }
