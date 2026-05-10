@@ -2,6 +2,9 @@ public class BattlePanel extends JPanel {
     private final BattleManager manager;
     private Image playerPlasma, enemyPlasma, victoryImg, defeatedImg, hpPotionImg, manaPotionImg;
     private Image[] backgrounds = new Image[5];
+    private boolean facingRight = true;
+    private final Set<Integer> pressedKeys = new HashSet<>();
+    
  
     public BattlePanel(BattleManager manager) {
         this.manager = manager;
@@ -18,5 +21,21 @@ public class BattlePanel extends JPanel {
             backgrounds[3] = ImageIO.read(new File("prefinal_bg.png"));
             backgrounds[4] = ImageIO.read(new File("final_bg.png"));
         } catch (Exception e) { e.printStackTrace(); }
+        addKeyListener(new KeyAdapter() {
+        @Override public void keyPressed(KeyEvent e) {
+            pressedKeys.add(e.getKeyCode());
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) manager.shootPlasma(facingRight);
+        }
+        @Override public void keyReleased(KeyEvent e) { pressedKeys.remove(e.getKeyCode()); }
+    });
+
+        private void handleJoystickMovement() {
+        int dx = 0, dy = 0, speed = 15;
+        if (pressedKeys.contains(KeyEvent.VK_LEFT)) { dx -= speed; facingRight = false; }
+        if (pressedKeys.contains(KeyEvent.VK_RIGHT)) { dx += speed; facingRight = true; }
+        if (pressedKeys.contains(KeyEvent.VK_UP)) dy -= speed;
+        if (pressedKeys.contains(KeyEvent.VK_DOWN)) dy += speed;
+        manager.player.move(dx, dy);
+    }
     }
 }
