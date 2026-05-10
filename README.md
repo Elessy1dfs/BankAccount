@@ -19,7 +19,7 @@
 * **Responsive UI**: Stretched background rendering and centered HUD elements that adapt to full-screen/maximized windows.
 * ---
 
-## 🛠️ Controls
+##  Controls
 
 | Key | Action |
 | :--- | :--- |
