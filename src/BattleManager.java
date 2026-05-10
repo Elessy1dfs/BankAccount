@@ -49,6 +49,28 @@ public class BattlePanel extends JPanel {
         manager.player.move(dx, dy);
     }
 
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
         
+        if (backgrounds[manager.currentStage] != null) 
+            g2.drawImage(backgrounds[manager.currentStage], 0, 0, getWidth(), getHeight(), null);
+
+        g2.setColor(Color.YELLOW);
+        g2.setFont(new Font("Arial Black", Font.BOLD, 35));
+        String title = getStageTitle(manager.currentStage);
+        g2.drawString(title, (getWidth() - g2.getFontMetrics().stringWidth(title))/2, 65);
     }
+}
+private String getStageTitle(int s) {
+        switch(s) { 
+            case 1: return "PRELIM: CONTRERAS"; 
+            case 2: return "MIDTERM: BOLABOLA"; 
+            case 3: return "PRE-FINAL: ABADINAS"; 
+            case 4: return "FINALS: TABOADA"; 
+            default: return ""; 
+        }
+    }
+
 }
