@@ -4,7 +4,7 @@
 
 ---
 
-## 🌟 Features
+##  Features
 
 * **Academic Gauntlet (4 Stages)**: Battle through **Prelim**, **Midterm**, **Pre-Final**, and **Finals** against legendary bosses: Contreras, Bolabola, Abadinas, and the final boss, Taboada.
 * **Joystick Movement**: Support for 8-way diagonal movement using a synchronized key-pressed system.
