@@ -6,6 +6,8 @@ public class BattleManager {
     private Random rand = new Random();
     
     public List<Potion> potions = new ArrayList<>();
+    public List<EnemyProjectile> enemyProjectiles = new ArrayList<>();
+    private long lastEnemyShootTime = 0;
  
     public BattleManager(Pet player, Runnable updateUI) {
         this.player = player;
@@ -68,6 +70,31 @@ public class BattleManager {
         });
         t.start();
         new Timer(450, e -> { if(player.state != 2) player.state = 0; }).start();
+    }
+
+    public void updateAI() {
+        if (isGameOver) return;
+        bot.chase(player);
+        handleBossPassives();
+        handlePotionPickup();
+        
+        long now = System.currentTimeMillis();
+        if (now - lastEnemyShootTime > 1000) {
+            bot.state = 1;
+            enemyProjectiles.add(new EnemyProjectile(bot.x + 40, bot.y + 40, bot.faceDir, 0));
+            lastEnemyShootTime = now;
+            bot.attackCount++;
+            new Timer(450, e -> { if(bot.state != 2) bot.state = 0; }).start();
+        }
+        for (int i = enemyProjectiles.size() - 1; i >= 0; i--) {
+            EnemyProjectile p = enemyProjectiles.get(i);
+            p.x += (14 * p.dirX); p.y += (14 * p.dirY);
+            if (Math.abs(p.x - (player.x + 64)) < 55 && Math.abs(p.y - (player.y + 64)) < 55) {
+                player.takeDamage(bot.aura);
+                if (player.hp <= 0) { isGameOver = true; playerWon = false; }
+                enemyProjectiles.remove(i);
+            } else if (p.x < -200 || p.x > 2500) enemyProjectiles.remove(i);
+        }
     }
     
     private void handlePotionPickup() {
