@@ -30,7 +30,7 @@ The project is designed with a strict adherence to OOP concepts:
 
 
 ### Class Diagram  
-![System Class Diagram](ClassDiagram(1).png)
+![System Class Diagram](assets/img/ClassDiagram(1).png)
 
 ### Use Case Diagram
 ![System Use Case Diagram](assets/img/UseCaseDiagramBrainrot.drawio.png)
