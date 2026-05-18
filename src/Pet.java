@@ -30,7 +30,7 @@ public abstract class Pet {
         this.x = x;
         this.y = y;
         try {
-            this.spriteSheet = ImageIO.read(new File(spritePath));
+            this.spriteSheet = ImageIO.read(new File("assets/img/" + spritePath));
         } catch (Exception e) {
             System.out.println("Resource error: " + spritePath);
         }

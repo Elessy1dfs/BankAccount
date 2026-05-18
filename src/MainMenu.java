@@ -10,7 +10,7 @@ public class MainMenu extends JPanel {
 
     public MainMenu(Runnable onStart) {
         try {
-            background = ImageIO.read(new File("menu_bg.png"));
+            background = ImageIO.read(new File("assets/img/menu_bg.png"));
         } catch (Exception e) {
             System.out.println("Menu background not found");
         }
