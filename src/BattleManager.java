@@ -28,7 +28,7 @@ public class BattleManager {
         manaRegen.start();
  
         Timer potionSpawner = new Timer(4000, e -> {
-            if (!isGameOver && !isPaused) {
+            if (!isGameOver && !isPaused && !isWaitingForNextStage) {
                 int type = rand.nextInt(2);
                 int range = 250;
                 int rx = player.x + (rand.nextInt(range * 2) - range);
@@ -45,6 +45,7 @@ public class BattleManager {
         player.x = 100; player.y = 400;
         enemyProjectiles.clear();
         potions.clear();
+        isWaitingForNextStage = false;
         switch (currentStage) {
             case 1: bot = new Pet("Contreras", 100, 12, 5, "contreras.png", 800, 400) {}; break;
             case 2: bot = new Pet("Bolabola", 150, 18, 15, "bolabola (1).png", 800, 400) {}; break;
@@ -54,7 +55,7 @@ public class BattleManager {
     }
  
     public void shootPlasma(boolean isFacingRight) {
-        if (isGameOver || isPaused || player.projectileActive || player.mana < 20) return;
+        if (isGameOver || isPaused || isWaitingForNextStage || player.projectileActive || player.mana < 20) return;
         player.mana -= 20;
         player.state = 1;
         player.projectileActive = true;
@@ -79,7 +80,7 @@ public class BattleManager {
     }
  
     public void updateAI() {
-        if (isGameOver || isPaused) return;
+        if (isGameOver || isPaused || isWaitingForNextStage) return;
         bot.chase(player);
         handleBossPassives();
         handlePotionPickup();
@@ -116,7 +117,7 @@ public class BattleManager {
     }
  
     private void checkStageProgress() {
-        if (currentStage < 4) { currentStage++; spawnNextEnemy(); }
+        if (currentStage < 4) isWaitingForNextStage = true;
         else { isGameOver = true; playerWon = true; }
     }
  
