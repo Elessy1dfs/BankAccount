@@ -85,3 +85,16 @@ public class BattlePanel extends JPanel {
         else g2.drawImage(img, p.x + 128, p.y, -128, 128, null);
         if (isBoss && p.isShielded) { g2.setColor(new Color(0, 255, 255, 100)); g2.fillOval(p.x, p.y, 128, 128); }
     }
+    private void drawUI(Graphics2D g, Pet p, boolean isPlayer) {
+        FontMetrics fm = g.getFontMetrics();
+        g.setColor(Color.WHITE); g.setFont(new Font("Arial", Font.BOLD, 14));
+        g.drawString(p.name, p.x + (64 - fm.stringWidth(p.name)/2), p.y - 45);
+        g.setColor(Color.RED); g.fillRect(p.x + 14, p.y - 35, 100, 10);
+        g.setColor(Color.GREEN); g.fillRect(p.x + 14, p.y - 35, (int)(p.hp/(float)p.maxHp * 100), 10);
+        if (isPlayer) {
+            g.setColor(Color.BLUE); g.fillRect(p.x + 14, p.y - 22, (int)(p.mana/(float)p.maxMana * 100), 8);
+        } else {
+            g.setColor(Color.YELLOW); g.setFont(new Font("Arial", Font.BOLD, 10));
+            g.drawString(getSkillText(manager.currentStage), p.x + 14, p.y - 10);
+        }
+    }
