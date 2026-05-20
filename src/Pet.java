@@ -1,7 +1,6 @@
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
 import java.io.File;
+import javax.imageio.ImageIO;
  
 public abstract class Pet {
     public String name;
@@ -9,7 +8,7 @@ public abstract class Pet {
     public int mana, maxMana = 100;
     public int x, y;
     public int frameIndex = 0;
-    public int state = 0; // 0: Idle (Row 1), 1: Attack (Row 2), 2: Hit (Row 3)
+    public int state = 0;
     public BufferedImage spriteSheet;
  
     public boolean projectileActive = false;
@@ -39,6 +38,10 @@ public abstract class Pet {
     public void move(int dx, int dy) {
         this.x += dx;
         this.y += dy;
+
+        if (this.x < 0) this.x = 0;
+        if (this.x > 1800) this.x = 1800; 
+
         if (dx > 0) faceDir = 1;
         else if (dx < 0) faceDir = -1;
     }
@@ -53,7 +56,7 @@ public abstract class Pet {
  
     public void takeDamage(int damage) {
         if (isShielded) return;
-        state = 2; // Trigger Hit animation
+        state = 2; 
         int actualDamage = Math.max(1, damage - (rizz / 10));
         this.hp = Math.max(0, this.hp - actualDamage);
     }
