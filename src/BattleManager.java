@@ -41,6 +41,17 @@ public class BattleManager {
         potionSpawner.start();
     }
  
+    public void resetGame() {
+        currentStage = 1;
+        isGameOver = false;
+        playerWon = false;
+        isPaused = false;
+        isWaitingForNextStage = false;
+        player.hp = player.maxHp;
+        player.mana = player.maxMana;
+        spawnNextEnemy();
+    }
+ 
     public void spawnNextEnemy() {
         player.x = 100; player.y = 400;
         enemyProjectiles.clear();
