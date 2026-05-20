@@ -98,3 +98,10 @@ public class BattlePanel extends JPanel {
             g.drawString(getSkillText(manager.currentStage), p.x + 14, p.y - 10);
         }
     }
+    private String getStageTitle(int s) {
+        switch(s) { case 1: return "PRELIM: CONTRERAS"; case 2: return "MIDTERM: BOLABOLA"; case 3: return "PRE-FINAL: ABADINAS"; case 4: return "FINALS: TABOADA"; default: return ""; }
+    }
+    private String getSkillText(int s) {
+        switch(s) { case 1: return "PASSIVE: REGEN"; case 2: return "SKILL: 4-WAY"; case 3: return "PASSIVE: STEALTH"; case 4: return "PASSIVE: SHIELD"; default: return ""; }
+    }
+}
