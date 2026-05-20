@@ -42,6 +42,9 @@ public abstract class Pet {
         if (this.x < 0) this.x = 0;
         if (this.x > 1800) this.x = 1800; 
 
+        if (this.y < 50) this.y = 50;   
+        if (this.y > 900) this.y = 900; 
+
         if (dx > 0) faceDir = 1;
         else if (dx < 0) faceDir = -1;
     }
