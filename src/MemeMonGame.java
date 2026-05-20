@@ -21,6 +21,7 @@ public class MemeMonGame extends JFrame {
         battleScreen.add(arena, BorderLayout.CENTER);
  
         MainMenu menu = new MainMenu(() -> {
+            manager.resetGame();
             cardLayout.show(mainContainer, "BATTLE");
             arena.requestFocusInWindow();
         });
